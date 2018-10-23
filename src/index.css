@@ -1,10 +1,9 @@
+.to-do-list {
+  margin: 40px auto;
+  max-width: 340px;
+}
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-}
-
-.to-do-list {
-	margin: 40px auto;
-	max-width: 340px;
 }

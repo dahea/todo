@@ -6,19 +6,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Upcoming features
 
  - clear input field on submit
- - add error message when input is empty
- - style list items
- - delete list item
+ - add error message when input is empty and user clicks submit
  - mark item as complete
+ - styles
 
 ## To Run
 
-In the project directory, you can run:
+In the project directory: *npm start*
 
-### `npm start`
-
-Runs the app in the development mode.<br>
+Runs the app in the development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.

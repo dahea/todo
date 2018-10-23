@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import './App.css';
 
 class NewItem extends Component {
@@ -22,22 +22,27 @@ class NewItem extends Component {
   }
 }
 
-const List = ({listItems}) => {
+const List = ({listItems, clickComplete, clickDelete}) => {
   return (
     <ul>
       {listItems.map((listItem, i) => {
         return (
-          <ListItem listItem={listItem} key={i} index={i} />
+          <ListItem listItem={listItem} key={i} index={i} clickComplete={clickComplete} clickDelete={clickDelete} />
         )
       })}
     </ul>
   )
 }
 
-const ListItem = ({listItem, index}) => {
+const ListItem = ({listItem, index, clickComplete, clickDelete}) => {
   return (
     <li key={index}>
       {index + 1} - {listItem}
+
+      <div className='options-wrapper'>
+          <div onClick={() => clickComplete(index)} className='option complete'>✓</div>
+          <div onClick={() => clickDelete(index)} className='option delete'>X</div>
+      </div>
     </li>
   )
 }
@@ -50,6 +55,8 @@ class App extends Component {
       listItems: []
     };
     this.clickAddButton = this.clickAddButton.bind(this)
+    this.clickComplete = this.clickComplete.bind(this)
+    this.clickDelete = this.clickDelete.bind(this)
   }
 
   clickAddButton(value) {
@@ -60,11 +67,21 @@ class App extends Component {
     }
   }
 
+  clickComplete(i) {
+      console.log(`complete ${i}`) 
+  }
+
+  clickDelete(i) {
+    let newListItems = this.state.listItems
+    newListItems.splice(i, 1)
+    this.setState({listItems: newListItems})
+  }
+
   render() {
     const listItems = this.state.listItems;
     return (
       <div className='to-do-list'>
-        <List listItems={listItems} />
+        <List listItems={listItems} clickComplete={this.clickComplete} clickDelete={this.clickDelete} />
         <NewItem clickAddButton={this.clickAddButton} />
       </div>
     );
