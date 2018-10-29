@@ -8,6 +8,7 @@ class NewItem extends Component {
     this.state = {value: ''};
     this.handleChange = this.handleChange.bind(this);
     this.localClickAddButton = this.localClickAddButton.bind(this);
+    this.localKeyPress = this.localKeyPress.bind(this);
   }
 
   handleChange(event){
@@ -22,10 +23,17 @@ class NewItem extends Component {
     this.setState({value: ''})
   }
 
+  localKeyPress(event) {
+    if (event.key == 'Enter'){
+      this.localClickAddButton();
+    }
+  }
+
+
   render() {
     return (
       <div className={this.props.hasError && 'error'}>
-        <input type="text" name="newListItem" placeholder="New To Do Item" value={this.state.value} onChange={this.handleChange} />
+        <input type="text" name="newListItem" placeholder="New To Do Item" value={this.state.value} onChange={this.handleChange} onKeyPress={this.localKeyPress}/>
         <button type="submit" onClick={this.localClickAddButton}><Plus /></button>
       </div>
     );
