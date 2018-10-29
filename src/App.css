@@ -1,16 +1,64 @@
 .to-do-list {
   margin: 40px auto;
-  max-width: 340px;
-}
+  max-width: 320px;
+  background: #ffff9b;
+  padding: 20px;
+  box-sizing: border-box;
 
-.error input {
-	border-color: #ff0000;
 }
 
 .to-do-list ul li {
 	display: flex;
+	line-height: 24px;
+	margin-bottom: 10px;
+}
+
+.to-do-list ul li .options-wrapper {
+	margin-left: auto;
+	display: flex;
+}
+
+.to-do-list ul li .options-wrapper .option {
+	cursor: pointer;
+	margin-left: 10px;
 }
 
 .to-do-list ul li.complete {
 	text-decoration: line-through;
+	opacity: .5;
+}
+
+.to-do-list ul li.complete .options-wrapper .option.complete{
+	svg {
+		stroke: red;
+	}
+}
+
+.add-item {
+	display: flex;
+}
+
+.add-item input, button {
+	background: none;
+	border: none;
+	padding: 0;
+	margin: 0;
+}
+
+.add-item input {
+	background: #fff;
+	font-size: inherit;
+	flex-grow: 1;
+	border-bottom: 2px solid #555;
+	margin-right: 10px;
+	padding: 0 5px;
+}
+
+.add-item button {
+	margin-left: auto;
+	cursor: pointer;
+}
+
+.add-item.error input {
+	border-color: #ff0000;
 }

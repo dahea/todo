@@ -32,7 +32,7 @@ class NewItem extends Component {
 
   render() {
     return (
-      <div className={this.props.hasError && 'error'}>
+      <div className={`add-item ${this.props.hasError && 'error'}`}>
         <input type="text" name="newListItem" placeholder="New To Do Item" value={this.state.value} onChange={this.handleChange} onKeyPress={this.localKeyPress}/>
         <button type="submit" onClick={this.localClickAddButton}><Plus /></button>
       </div>
@@ -88,7 +88,7 @@ class App extends Component {
   }
 
   clickComplete(i) {
-    let updatedItem = {text: this.state.listItems[i].text, complete: true}
+    let updatedItem = {text: this.state.listItems[i].text, complete: !this.state.listItems[i].complete}
     let newListItems = this.state.listItems
     newListItems.splice(i, 1, updatedItem)
     this.setState({listItems: newListItems})
