@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Check, X } from 'react-feather';
+import { Check, X, Plus } from 'react-feather';
 import './App.css';
 
 class NewItem extends Component {
@@ -26,7 +26,7 @@ class NewItem extends Component {
     return (
       <div className={this.props.hasError && 'error'}>
         <input type="text" name="newListItem" placeholder="New To Do Item" value={this.state.value} onChange={this.handleChange} />
-        <button type="submit" onClick={this.localClickAddButton}>Add New Item</button>
+        <button type="submit" onClick={this.localClickAddButton}><Plus /></button>
       </div>
     );
   }
@@ -46,8 +46,8 @@ const List = ({listItems, clickComplete, clickDelete}) => {
 
 const ListItem = ({listItem, index, clickComplete, clickDelete}) => {
   return (
-    <li key={index}>
-      {index + 1} - {listItem}
+    <li className={listItem.complete && 'complete'} key={index}>
+      {listItem.text}
 
       <div className='options-wrapper'>
           <div onClick={() => clickComplete(index)} className='option complete'><Check /></div>
@@ -73,14 +73,17 @@ class App extends Component {
 
   clickAddButton(value) {
     if (value) {
-        this.setState({listItems: this.state.listItems.concat(value)})
+        this.setState({listItems: this.state.listItems.concat({text: value, complete: false})})
     } else {
         this.setState({hasError: true})
     }
   }
 
   clickComplete(i) {
-      console.log(`complete ${i}`) 
+    let updatedItem = {text: this.state.listItems[i].text, complete: true}
+    let newListItems = this.state.listItems
+    newListItems.splice(i, 1, updatedItem)
+    this.setState({listItems: newListItems})
   }
 
   clickDelete(i) {

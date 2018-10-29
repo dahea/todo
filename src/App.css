@@ -2,3 +2,15 @@
   margin: 40px auto;
   max-width: 340px;
 }
+
+.error input {
+	border-color: #ff0000;
+}
+
+.to-do-list ul li {
+	display: flex;
+}
+
+.to-do-list ul li.complete {
+	text-decoration: line-through;
+}

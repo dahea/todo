@@ -1,13 +1,6 @@
-.to-do-list {
-  margin: 40px auto;
-  max-width: 340px;
-}
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
 }
 
-.error input {
-	border-color: #ff0000;
-}

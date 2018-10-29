@@ -5,7 +5,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Upcoming features
 
- - mark item as complete
  - styles
  - enter keypress triggers onclick
 
