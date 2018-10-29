@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Check, X } from 'react-feather';
 import './App.css';
 
 class NewItem extends Component {
@@ -6,17 +7,26 @@ class NewItem extends Component {
     super(props);
     this.state = {value: ''};
     this.handleChange = this.handleChange.bind(this);
+    this.localClickAddButton = this.localClickAddButton.bind(this);
   }
 
   handleChange(event){
     this.setState({value:event.target.value});
+    if (this.state.value != '') {
+      this.props.handleInputChange();
+    }
+  }
+
+  localClickAddButton(){
+    this.props.clickAddButton(this.state.value)
+    this.setState({value: ''})
   }
 
   render() {
     return (
-      <div>
+      <div className={this.props.hasError && 'error'}>
         <input type="text" name="newListItem" placeholder="New To Do Item" value={this.state.value} onChange={this.handleChange} />
-        <button type="submit" onClick={() => this.props.clickAddButton(this.state.value)}>Add New Item</button>
+        <button type="submit" onClick={this.localClickAddButton}>Add New Item</button>
       </div>
     );
   }
@@ -40,8 +50,8 @@ const ListItem = ({listItem, index, clickComplete, clickDelete}) => {
       {index + 1} - {listItem}
 
       <div className='options-wrapper'>
-          <div onClick={() => clickComplete(index)} className='option complete'>✓</div>
-          <div onClick={() => clickDelete(index)} className='option delete'>X</div>
+          <div onClick={() => clickComplete(index)} className='option complete'><Check /></div>
+          <div onClick={() => clickDelete(index)} className='option delete'><X /></div>
       </div>
     </li>
   )
@@ -52,18 +62,20 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      listItems: []
+      listItems: [],
+      hasError: false
     };
     this.clickAddButton = this.clickAddButton.bind(this)
     this.clickComplete = this.clickComplete.bind(this)
     this.clickDelete = this.clickDelete.bind(this)
+    this.handleInputChange = this.handleInputChange.bind(this)
   }
 
   clickAddButton(value) {
     if (value) {
         this.setState({listItems: this.state.listItems.concat(value)})
     } else {
-      console.log('error')
+        this.setState({hasError: true})
     }
   }
 
@@ -77,12 +89,16 @@ class App extends Component {
     this.setState({listItems: newListItems})
   }
 
+  handleInputChange() {
+    this.setState({hasError: false})
+  }
+
   render() {
     const listItems = this.state.listItems;
     return (
       <div className='to-do-list'>
         <List listItems={listItems} clickComplete={this.clickComplete} clickDelete={this.clickDelete} />
-        <NewItem clickAddButton={this.clickAddButton} />
+        <NewItem clickAddButton={this.clickAddButton} handleInputChange={this.handleInputChange} hasError={this.state.hasError}/>
       </div>
     );
   }

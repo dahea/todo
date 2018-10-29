@@ -5,8 +5,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Upcoming features
 
- - clear input field on submit
- - add error message when input is empty and user clicks submit
  - mark item as complete
  - styles
 
