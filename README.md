@@ -7,6 +7,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
  - mark item as complete
  - styles
+ - enter keypress triggers onclick
 
 ## To Run
 
