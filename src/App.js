@@ -108,6 +108,7 @@ class App extends Component {
     const listItems = this.state.listItems;
     return (
       <div className='to-do-list'>
+        <h1>My To-Do List:</h1>
         <List listItems={listItems} clickComplete={this.clickComplete} clickDelete={this.clickDelete} />
         <NewItem clickAddButton={this.clickAddButton} handleInputChange={this.handleInputChange} hasError={this.state.hasError}/>
       </div>

@@ -1,10 +1,17 @@
 .to-do-list {
   margin: 40px auto;
   max-width: 320px;
-  background: #ffff9b;
+  background: #ffffb7;
   padding: 20px;
   box-sizing: border-box;
+}
 
+.to-do-list h1 {
+	font-size: 20px;
+	font-weight: 600;
+	margin-bottom: 20px;
+	line-height: 2;
+	border-bottom: 2px solid #000;
 }
 
 .to-do-list ul li {
@@ -25,13 +32,10 @@
 
 .to-do-list ul li.complete {
 	text-decoration: line-through;
-	opacity: .5;
 }
 
-.to-do-list ul li.complete .options-wrapper .option.complete{
-	svg {
-		stroke: red;
-	}
+.to-do-list ul li.complete .options-wrapper .option.complete svg {
+	stroke: #00ce03;
 }
 
 .add-item {
